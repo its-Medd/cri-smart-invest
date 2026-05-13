@@ -61,6 +61,9 @@ public class AuthService {
 
     // ── Refresh Token ─────────────────────────────────────────────────────────
     public AuthResponse refreshToken(String requestToken) {
+        if (requestToken == null || requestToken.isBlank()) {
+            throw new BadCredentialsException("Refresh token is missing");
+        }
         RefreshToken refreshToken = refreshTokenService.findByToken(requestToken);
         refreshTokenService.verifyExpiration(refreshToken);
         User   user        = refreshToken.getUser();

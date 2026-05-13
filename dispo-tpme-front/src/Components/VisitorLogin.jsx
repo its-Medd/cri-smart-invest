@@ -27,8 +27,6 @@ function VisitorLogin() {
       const res = await authService.login(form.email, form.password);
       const data = res.data;
       login(data.accessToken, data.user);
-      localStorage.setItem("refreshToken", data.refreshToken);
-      localStorage.removeItem("tpme_token");
       navigate("/");
     } catch (err) {
       setError(err.response?.data?.message || err.message);

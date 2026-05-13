@@ -26,9 +26,7 @@ export default function Login() {
     const res = await authService.login(form.email, form.password);
     const data = res.data;
 
-      login(data.accessToken, data.user);  // ← use context login
-      localStorage.setItem("refreshToken", data.refreshToken);
-      localStorage.setItem("user", JSON.stringify(data.user));
+      login(data.accessToken, data.user);
 
     navigate("/dashboard");
   } catch (err) {

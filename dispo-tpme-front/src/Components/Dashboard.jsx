@@ -104,8 +104,8 @@ export default function Dashboard() {
 
   const user = authUser || JSON.parse(localStorage.getItem("user") || '{"name":"Admin CRI"}');
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout = async () => {
+    await logout();
     navigate("/admin/login");
   };
 

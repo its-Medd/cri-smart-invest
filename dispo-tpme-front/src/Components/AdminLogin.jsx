@@ -28,7 +28,6 @@ export default function AdminLogin() {
       const res  = await authService.adminLogin(form.email, form.password);
       const data = res.data;
       login(data.accessToken, data.user);
-      localStorage.setItem("refreshToken", data.refreshToken);
       navigate("/dashboard");
     } catch (err) {
       const msg = err.response?.data?.message || err.response?.data || err.message;

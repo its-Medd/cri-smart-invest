@@ -1,10 +1,35 @@
 // services/api.js
 import axios from 'axios';
 
+export const AUTH_CHANGED_EVENT = 'auth:changed';
+
 const api = axios.create({
   baseURL: process.env.REACT_APP_API_URL || 'http://localhost:8080/api',
   headers: { 'Content-Type': 'application/json' },
+  withCredentials: true,
 });
+
+let refreshRequest = null;
+
+function notifyAuthChanged() {
+  window.dispatchEvent(new Event(AUTH_CHANGED_EVENT));
+}
+
+function persistSession(data) {
+  localStorage.setItem('token', data.accessToken);
+  if (data.user) {
+    localStorage.setItem('user', JSON.stringify(data.user));
+  }
+  localStorage.removeItem('tpme_token');
+  notifyAuthChanged();
+}
+
+function clearSession() {
+  localStorage.removeItem('token');
+  localStorage.removeItem('tpme_token');
+  localStorage.removeItem('user');
+  notifyAuthChanged();
+}
 
 // Attach JWT on every request
 api.interceptors.request.use((config) => {
@@ -13,20 +38,46 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// Handle 401 — redirect to appropriate login
+// Refresh once on 401, then fall back to login
 api.interceptors.response.use(
   (res) => res,
-  (err) => {
+  async (err) => {
     if (err.response?.status === 401) {
-      const requestUrl = err.config?.url || '';
-      if (requestUrl.includes('/auth/admin/login') || requestUrl.includes('/auth/login')) {
+      const originalRequest = err.config || {};
+      const requestUrl = originalRequest.url || '';
+      const isAuthEntryPoint =
+        requestUrl.includes('/auth/admin/login') ||
+        requestUrl.includes('/auth/login') ||
+        requestUrl.includes('/auth/register');
+      const isRefreshRequest = requestUrl.includes('/auth/refresh');
+
+      if (isAuthEntryPoint) {
         return Promise.reject(err);
       }
 
-      localStorage.removeItem('token');
-      localStorage.removeItem('tpme_token');
-      localStorage.removeItem('refreshToken');
-      localStorage.removeItem('user');
+      if (!isRefreshRequest && !originalRequest._retry) {
+        originalRequest._retry = true;
+        try {
+          if (!refreshRequest) {
+            refreshRequest = api.post('/auth/refresh');
+          }
+          const refreshResponse = await refreshRequest;
+          persistSession(refreshResponse.data);
+          originalRequest.headers = originalRequest.headers || {};
+          originalRequest.headers.Authorization = `Bearer ${refreshResponse.data.accessToken}`;
+          return api(originalRequest);
+        } catch (refreshError) {
+          clearSession();
+          window.location.href = window.location.pathname.startsWith('/admin')
+            ? '/admin/login'
+            : '/visitorlogin';
+          return Promise.reject(refreshError);
+        } finally {
+          refreshRequest = null;
+        }
+      }
+
+      clearSession();
       window.location.href = window.location.pathname.startsWith('/admin')
         ? '/admin/login'
         : '/visitorlogin';
@@ -39,20 +90,22 @@ export default api;
 
 // ── Auth ──────────────────────────────────────────────────────
 export const authService = {
-  login:      (email, motDePasse) => api.post('/auth/login',       { email,    password: motDePasse }),
+  login: (email, motDePasse) => api.post('/auth/login', { email, password: motDePasse }),
   adminLogin: (email, password) => api.post('/auth/admin/login', { email, password }),
-  register:   (data)               => api.post('/auth/register',   data),
-  me:         ()                   => api.get('/auth/me'),
+  register: (data) => api.post('/auth/register', data),
+  refresh: () => api.post('/auth/refresh'),
+  logout: () => api.post('/auth/logout'),
+  me: () => api.get('/auth/me'),
 };
 
 // ── Demandes ─────────────────────────────────────────────────
 export const demandeService = {
-  simuler:      (payload) => api.post('/demandes/simuler', payload),
-  creer:        (data)    => api.post('/demandes', data),
-  soumettre:    (id)      => api.put(`/demandes/${id}/soumettre`),
-  mesDemandes:  ()        => api.get('/demandes/mes-demandes'),
-  getById:      (id)      => api.get(`/demandes/${id}`),
-  uploadDoc:    (id, type, file) => {
+  simuler: (payload) => api.post('/demandes/simuler', payload),
+  creer: (data) => api.post('/demandes', data),
+  soumettre: (id) => api.put(`/demandes/${id}/soumettre`),
+  mesDemandes: () => api.get('/demandes/mes-demandes'),
+  getById: (id) => api.get(`/demandes/${id}`),
+  uploadDoc: (id, type, file) => {
     const fd = new FormData();
     fd.append('type', type);
     fd.append('file', file);
@@ -74,8 +127,8 @@ const chatApi = axios.create({
 });
 
 export const chatService = {
-  send:   (message) => chatApi.post('/chat', { message }).then((r) => r.data),
-  health: ()        => chatApi.get('/chat/health').then((r) => r.data),
+  send: (message) => chatApi.post('/chat', { message }).then((r) => r.data),
+  health: () => chatApi.get('/chat/health').then((r) => r.data),
 };
 
 // ── OAuth2 ────────────────────────────────────────────────────

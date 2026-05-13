@@ -48,8 +48,8 @@ export default function Profile() {
       .finally(() => setQLoading(false));
   }, []);
 
-  function handleLogout() {
-    logout();
+  async function handleLogout() {
+    await logout();
     navigate("/");
   }
 

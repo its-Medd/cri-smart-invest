@@ -1,5 +1,6 @@
 // src/context/AuthContext.jsx
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { AUTH_CHANGED_EVENT, authService } from "../api";
 
 const AuthContext = createContext(null);
 
@@ -41,11 +42,27 @@ function getStoredUser() {
 
 export function AuthProvider({ children }) {
   const [token, setToken] = useState(() => localStorage.getItem("token"));
-  const [user,  setUser]  = useState(() => {
+  const [user, setUser] = useState(() => {
     const storedToken = localStorage.getItem("token");
     const userData = getStoredUser();
     return storedToken ? userFromToken(storedToken, userData) : null;
   });
+
+  const syncFromStorage = () => {
+    const storedToken = localStorage.getItem("token");
+    const userData = getStoredUser();
+    setToken(storedToken);
+    setUser(storedToken ? userFromToken(storedToken, userData) : null);
+  };
+
+  const clearSession = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("tpme_token");
+    localStorage.removeItem("user");
+    setToken(null);
+    setUser(null);
+    window.dispatchEvent(new Event(AUTH_CHANGED_EVENT));
+  };
 
   useEffect(() => {
     if (token) {
@@ -54,26 +71,37 @@ export function AuthProvider({ children }) {
       if (nextUser) {
         setUser(nextUser);
       } else {
-        logout();
+        clearSession();
       }
     } else {
       setUser(null);
     }
   }, [token]);
 
+  useEffect(() => {
+    window.addEventListener(AUTH_CHANGED_EVENT, syncFromStorage);
+    return () => window.removeEventListener(AUTH_CHANGED_EVENT, syncFromStorage);
+  }, []);
+
   const login = (newToken, userData) => {
     localStorage.setItem("token", newToken);
     if (userData) localStorage.setItem("user", JSON.stringify(userData));
+    localStorage.removeItem("tpme_token");
     setToken(newToken);
     setUser(userFromToken(newToken, userData));
+    window.dispatchEvent(new Event(AUTH_CHANGED_EVENT));
   };
 
-  const logout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("refreshToken");
-    localStorage.removeItem("user");
-    setToken(null);
-    setUser(null);
+  const logout = async () => {
+    try {
+      if (localStorage.getItem("token")) {
+        await authService.logout();
+      }
+    } catch {
+      // Local cleanup still matters even if the server-side logout fails.
+    } finally {
+      clearSession();
+    }
   };
 
   const isAdmin = user?.roles?.includes("ROLE_ADMIN") ?? false;

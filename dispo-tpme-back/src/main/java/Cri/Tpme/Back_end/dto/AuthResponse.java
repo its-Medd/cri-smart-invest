@@ -1,11 +1,13 @@
 package Cri.Tpme.Back_end.dto;
 
 import Cri.Tpme.Back_end.entity.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 @Data
 public class AuthResponse {
     private String accessToken;
+    @JsonIgnore
     private String refreshToken;
     private final String tokenType = "Bearer";
     private UserDto user;

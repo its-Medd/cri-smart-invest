@@ -14,7 +14,6 @@ export default function OAuth2RedirectHandler() {
       : location.search;
     const params = new URLSearchParams(paramsSource);
     const token = params.get("token");
-    const refreshToken = params.get("refreshToken");
     const error = params.get("error");
 
     if (location.hash || location.search) {
@@ -27,13 +26,12 @@ export default function OAuth2RedirectHandler() {
       return () => window.clearTimeout(timeout);
     }
 
-    if (!token || !refreshToken) {
+    if (!token) {
       setMessage("Connexion Google invalide. Veuillez reessayer.");
       const timeout = window.setTimeout(() => navigate("/visitorlogin", { replace: true }), 2500);
       return () => window.clearTimeout(timeout);
     }
     login(token);
-    localStorage.setItem("refreshToken", refreshToken);
     navigate("/", { replace: true });
   }, [location.hash, location.pathname, location.search, login, navigate]);
 

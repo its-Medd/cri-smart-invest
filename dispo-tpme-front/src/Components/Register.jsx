@@ -3,9 +3,11 @@ import { useNavigate, Link } from "react-router-dom";
 import styles from "../Styles/Auth.module.css";
 import LogoTPME from "./Logotpme";
 import { authService, OAUTH_BASE_URL } from "../api";
+import { useAuth } from "../context/AuthContext";
 
 export default function Register() {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -35,10 +37,7 @@ const handleSubmit = async (e) => {
     const res = await authService.register({ name: form.name, email: form.email, password: form.password });
     const data = res.data;
 
-localStorage.setItem("token", data.accessToken);
-localStorage.setItem("refreshToken", data.refreshToken);
-localStorage.setItem("user", JSON.stringify(data.user));
-localStorage.removeItem("tpme_token");
+    login(data.accessToken, data.user);
 
     navigate("/questionnaire");
   } catch (err) {

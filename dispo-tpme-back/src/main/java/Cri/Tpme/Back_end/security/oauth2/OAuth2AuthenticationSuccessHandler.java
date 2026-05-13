@@ -1,5 +1,6 @@
 package Cri.Tpme.Back_end.security.oauth2;
 
+import Cri.Tpme.Back_end.security.RefreshTokenCookieService;
 import Cri.Tpme.Back_end.security.JwtTokenProvider;
 import Cri.Tpme.Back_end.service.RefreshTokenService;
 import jakarta.servlet.http.*;
@@ -18,7 +19,8 @@ import java.nio.charset.StandardCharsets;
 @RequiredArgsConstructor
 public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
-    private final JwtTokenProvider   tokenProvider;
+    private final JwtTokenProvider tokenProvider;
+    private final RefreshTokenCookieService refreshTokenCookieService;
     private final RefreshTokenService refreshTokenService;
 
     @Value("${app.oauth2.authorized-redirect-uri}")
@@ -35,9 +37,10 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         String accessToken    = tokenProvider.generateTokenFromEmail(email);
         String refreshToken   = refreshTokenService.createRefreshToken(email).getToken();
 
+        response.addHeader("Set-Cookie", refreshTokenCookieService.createCookie(refreshToken).toString());
+
         String redirectUrl = authorizedRedirectUri
-                + "#token=" + URLEncoder.encode(accessToken, StandardCharsets.UTF_8)
-                + "&refreshToken=" + URLEncoder.encode(refreshToken, StandardCharsets.UTF_8);
+                + "#token=" + URLEncoder.encode(accessToken, StandardCharsets.UTF_8);
 
         getRedirectStrategy().sendRedirect(request, response, redirectUrl);
     }
