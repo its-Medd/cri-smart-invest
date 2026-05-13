@@ -1,0 +1,16 @@
+.git
+.git-monorepo-backup/
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
+*.out.log
+*.err.log
+*.env
+.env
+env.ps1
+**/node_modules/
+**/build/
+**/target/
+**/.m2/

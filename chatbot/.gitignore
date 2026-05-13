@@ -1,0 +1,6 @@
+.m2/
+target/
+chatbot.out.log
+chatbot.err.log
+.DS_Store
+Thumbs.db

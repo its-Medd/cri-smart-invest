@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&family=Barlow+Condensed:wght@600;700;800&family=Cairo:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  /* Brand palette */
+  --navy-900: #0A1230;
+  --navy-800: #0F1A45;
+  --navy-700: #1A2B6B;
+  --navy-600: #1E3280;
+  --navy-500: #2D45A8;
+  --navy-100: #E8ECF8;
+  --navy-50:  #F2F4FB;
+
+  --red-700:  #9B0E18;
+  --red-600:  #C1121F;
+  --red-500:  #E02535;
+  --red-100:  #FDEAEA;
+  --red-50:   #FFF5F5;
+
+  --gold-600: #B8860B;
+  --gold-500: #D4A017;
+  --gold-400: #EDB732;
+  --gold-100: #FDF3D0;
+
+  --green-700: #145A36;
+  --green-600: #1A7A4A;
+  --green-100: #E6F5EE;
+
+  /* Neutrals */
+  --white:    #FFFFFF;
+  --gray-50:  #F7F8FC;
+  --gray-100: #EEF0F7;
+  --gray-200: #DDE0ED;
+  --gray-300: #C4C9DE;
+  --gray-400: #9099BE;
+  --gray-500: #6B7599;
+  --gray-600: #4A5275;
+  --gray-700: #343A5C;
+  --gray-800: #1E2240;
+  --text:     #131829;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 3px rgba(10,18,48,.06);
+  --shadow-sm: 0 2px 8px rgba(10,18,48,.09);
+  --shadow-md: 0 4px 20px rgba(10,18,48,.12);
+  --shadow-lg: 0 8px 40px rgba(10,18,48,.16);
+  --shadow-xl: 0 16px 64px rgba(10,18,48,.20);
+
+  /* Radius */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-xl: 20px;
+
+  /* Typography */
+  --font-body: 'Barlow', sans-serif;
+  --font-display: 'Barlow Condensed', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--text);
+  background: var(--gray-50);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font-family: var(--font-body); cursor: pointer; }
+input, select, textarea { font-family: var(--font-body); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--gray-100); }
+::-webkit-scrollbar-thumb { background: var(--gray-300); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--navy-500); }
+
+/* ── RTL / Arabic support ── */
+[dir="rtl"] {
+  font-family: 'Cairo', 'Barlow', sans-serif;
+}
+[dir="rtl"] body,
+[dir="rtl"] button,
+[dir="rtl"] input,
+[dir="rtl"] select,
+[dir="rtl"] textarea {
+  font-family: 'Cairo', sans-serif;
+}
+
+/* Utilities */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); border: 0;
+}

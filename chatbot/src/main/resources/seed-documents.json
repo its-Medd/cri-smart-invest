@@ -1,0 +1,72 @@
+[
+  {
+    "id": "assistant-identite",
+    "title": "Identite et limites de l'assistant TPME Invest Maroc",
+    "category": "comportement",
+    "keywords": ["assistant", "TPME Invest Maroc", "Laayoune", "Sakia El Hamra", "CRI", "limites", "plateforme"],
+    "content": "Le chatbot est Assistant TPME Invest Maroc, conseiller virtuel specialise dans le dispositif de soutien specifique aux TPME de la region Laayoune-Sakia El Hamra. Il repond en priorite aux questions liees a l'investissement, aux TPME, aux primes, a l'eligibilite, au dossier, a la plateforme TPME Invest Maroc et au CRI. Il doit etre professionnel, bienveillant, pedagogique et concis. Il ne doit pas inventer d'informations, ne doit pas promettre l'octroi d'une prime et doit rappeler que la decision appartient a la CRUI. Si une information reste incertaine, il oriente vers le CRI de Laayoune-Sakia El Hamra."
+  },
+  {
+    "id": "charte-dispositif-tpme",
+    "title": "Nouvelle Charte de l'Investissement et dispositif TPME",
+    "category": "dispositif",
+    "keywords": ["charte", "investissement", "loi cadre 03.22", "dispositif TPME", "projets strategiques", "international"],
+    "content": "La Nouvelle Charte de l'Investissement, loi cadre 03.22, organise la politique d'investissement du Maroc. Elle vise notamment a augmenter la part de l'investissement prive, creer des emplois, mobiliser l'investissement et reduire les disparites territoriales. Elle comprend quatre dispositifs de soutien : le dispositif principal, le dispositif pour projets strategiques, le dispositif specifique dedie aux TPME et le dispositif pour le developpement des entreprises marocaines a l'international. Le dispositif TPME octroie des primes a l'investissement aux projets eligibles, dans le cadre de conventions d'investissement, apres approbation par la Commission Regionale Unifiee d'Investissement (CRUI)."
+  },
+  {
+    "id": "eligibilite-entreprise",
+    "title": "Eligibilite de l'entreprise",
+    "category": "eligibilite",
+    "keywords": ["eligibilite", "entreprise", "personne morale", "chiffre affaires", "capital", "actionnariat", "auto entrepreneur", "nouvelle entreprise"],
+    "content": "Le dispositif s'adresse aux personnes morales de droit prive soumises au droit marocain. L'entreprise doit avoir un chiffre d'affaires entre 1 million MAD et 200 millions MAD HT au cours d'au moins un des trois derniers exercices. La part du capital detenue directement ou indirectement par une grande entreprise dont le chiffre d'affaires depasse 200 millions MAD ne doit pas depasser 25%. Aucun actionnaire ou associe ne doit etre une personne morale de droit public ou une entreprise publique. Les entreprises nouvellement creees sont dispensees de la condition de chiffre d'affaires si leur dossier de creation a ete depose il y a moins de 3 ans. Les auto-entrepreneurs ne sont pas eligibles car le dispositif vise les personnes morales."
+  },
+  {
+    "id": "eligibilite-projet",
+    "title": "Eligibilite du projet d'investissement",
+    "category": "eligibilite",
+    "keywords": ["projet", "eligibilite", "investissement", "financement propre", "emplois stables", "ratio", "tourisme", "branche eligible"],
+    "content": "Un projet doit remplir quatre criteres cumulatifs. Premierement, le montant d'investissement doit etre au moins 1 million MAD et inferieur a 50 millions MAD. Deuxiemement, le financement propre doit representer au moins 10% du montant total d'investissement. Troisiemement, le projet doit creer au moins 1,5 emploi stable par million MAD investi, ou au moins 1 emploi stable par million MAD investi pour le tourisme. Quatriemement, le projet doit etre realise dans une branche d'activite eligible selon la region. Un emploi stable est un nouvel emploi cree directement par l'investisseur, avec un contrat d'au moins 18 mois consecutifs, occupe par un salarie marocain immatricule a la CNSS. Ratio = nombre d'emplois stables crees divise par le montant d'investissement en millions MAD."
+  },
+  {
+    "id": "primes-investissement",
+    "title": "Les trois primes a l'investissement",
+    "category": "primes",
+    "keywords": ["trois primes", "3 primes", "prime", "primes", "investissement", "prime emploi", "prime territoriale", "activites prioritaires", "cumul", "plafond", "30%"],
+    "content": "Le dispositif TPME prevoit trois primes cumulables, dans la limite de 30% du montant d'investissement primable. 1) Prime a la creation d'emplois stables : 5% si le ratio d'emplois stables est >= 2 et <= 5, 7% si le ratio est > 5 et <= 10, 10% si le ratio est > 10. Le ratio minimum d'eligibilite est >= 1,5, ou >= 1 pour le tourisme, mais la prime emploi commence a partir d'un ratio >= 2. 2) Prime territoriale : 10% pour les territoires de categorie A et 15% pour les territoires de categorie B. 3) Prime activites prioritaires : 10% pour les projets relevant des activites prioritaires definies. Les primes peuvent se cumuler mais le total est plafonne a 30% du montant d'investissement primable. Exemple : investissement de 20 M MAD a Laayoune, activite prioritaire, ratio emploi > 10 : prime emploi 10%, prime territoriale 10%, prime activite prioritaire 10%, total 30%, soit 6 M MAD."
+  },
+  {
+    "id": "prime-territoriale",
+    "title": "Prime territoriale Laayoune-Sakia El Hamra",
+    "category": "primes",
+    "keywords": ["prime territoriale", "territoire", "province", "prefecture", "Laayoune", "Boujdour", "Tarfaya", "Smara", "categorie A", "categorie B", "10%", "15%"],
+    "content": "Dans la region Laayoune-Sakia El Hamra, la prime territoriale depend de la province ou prefecture. Laayoune est classee categorie A et donne droit a 10% du montant d'investissement primable. Boujdour est classee categorie B et donne droit a 15%. Tarfaya est classee categorie B et donne droit a 15%. Smara est classee categorie B et donne droit a 15%. La categorie B correspond a la prime territoriale maximale du dispositif."
+  },
+  {
+    "id": "activites-prioritaires",
+    "title": "Activites prioritaires et secteurs eligibles",
+    "category": "secteurs",
+    "keywords": ["activites prioritaires", "secteurs", "branche eligible", "digital", "IA", "intelligence artificielle", "cloud", "cybersecurite", "e-commerce", "tourisme", "aquaculture", "industrie", "artisanat", "logistique"],
+    "content": "Les activites prioritaires dans la region Laayoune-Sakia El Hamra donnent droit a une prime de 10% lorsqu'elles sont eligibles. Exemples de secteurs et activites prioritaires : aquaculture en mer, en zone littorale ou en eau douce, traitement et valorisation des produits aquacoles, transformation des produits vegetaux ou animaux, conservation et co-produits de la mer, boissons, textile, habillement, cuir, papier/carton, chimie, cosmetiques, pharmacie, caoutchouc/plastique, energies renouvelables, entreposage et stockage frigorifique, unites logistiques aux ports, etablissements touristiques classes, restaurants touristiques, artisanat, cloud computing, cybersecurite, big data, intelligence artificielle, e-commerce, blockchain, conception web, developpement logiciels et applications mobiles, IoT, centres d'appels, musees, cinemas, theatres, gaming, tourisme de nature et gastronomie. Les branches eligibles incluent aussi industries extractives, industrie manufacturiere, energie renouvelable, gestion et valorisation des dechets, transports et entreposage, hebergement et restauration, artisanat, information et communication, arts et loisirs."
+  },
+  {
+    "id": "dossier-demande",
+    "title": "Dossier de demande d'appui",
+    "category": "dossier",
+    "keywords": ["dossier", "demande", "documents", "pieces", "statuts", "PV", "registre commerce", "modele J", "attestation fiscale", "CNSS", "etats financiers", "declaration", "contrat", "identite"],
+    "content": "Le dossier de demande d'appui comprend notamment : extrait des statuts de l'entreprise et copie du dernier PV de l'organe deliberant ; certificat d'immatriculation au registre du commerce modele J delivre depuis moins de 6 mois, ou autre document attestant la creation pour les autres entreprises ; attestation fiscale de situation reguliere delivree depuis moins de 6 mois ; attestation CNSS de situation reguliere delivree depuis moins de 6 mois ; copie des etats financiers des trois derniers exercices, ou etats disponibles si l'entreprise a moins de trois ans ; declaration disponible sur www.cri-invest.ma contenant la nature du projet, le montant et sa ventilation, le planning de realisation, le lieu, les emplois stables previsionnels, la branche d'activite et le mode de financement ; copie des contrats d'acquisition, location ou LOA du bien immeuble affecte au projet, ou compromis/promesse ; copie des pieces d'identite du representant legal. La soumission se fait electroniquement sur www.cri-invest.ma."
+  },
+  {
+    "id": "procedure-contact",
+    "title": "Etapes, plateforme et contact CRI",
+    "category": "procedure",
+    "keywords": ["etapes", "procedure", "soumettre", "cri-invest", "www.cri-invest.ma", "CRUI", "convention", "deboursement", "contact", "telephone", "email", "adresse", "CRI Laayoune"],
+    "content": "Les etapes pour beneficier de l'appui sont : contacter le CRI de la region pour s'informer ; preparer le dossier ; soumettre le dossier sur www.cri-invest.ma ; etude du dossier par la CRUI ; signature de la convention de financement ; accompagnement et suivi de l'execution du projet ; deboursement de la prime. La plateforme TPME Invest Maroc permet de verifier l'eligibilite, simuler la prime d'investissement, remplir un questionnaire de pre-evaluation et deposer le dossier de financement en ligne. Contact CRI Laayoune-Sakia El Hamra : telephone 05 28 89 11 89 / 05 28 99 12 01 / 05 28 89 11 79 ; email contact@laayouneinvest.ma ; adresse Av. Mohamed VI BP 2266, Laayoune 70000 ; site www.laayouneinvest.ma ; plateforme dossiers www.cri-invest.ma."
+  },
+  {
+    "id": "faq-plateforme",
+    "title": "FAQ plateforme TPME Invest Maroc",
+    "category": "faq",
+    "keywords": ["simulateur", "eligibilite", "compte", "inscription", "Google", "historique", "plateforme", "TPME Invest Maroc"],
+    "content": "La plateforme TPME Invest Maroc sert a verifier l'eligibilite, simuler la prime d'investissement, remplir un questionnaire de pre-evaluation et deposer le dossier de financement en ligne. Il est possible d'utiliser le simulateur de prime, le verificateur d'eligibilite et la soumission de dossier sans compte. Un compte permet toutefois de suivre l'historique des demarches. L'utilisateur peut s'inscrire par email et mot de passe ou via son compte Google."
+  }
+]
