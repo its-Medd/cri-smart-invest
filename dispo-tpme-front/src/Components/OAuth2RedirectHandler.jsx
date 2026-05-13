@@ -1,17 +1,25 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 export default function OAuth2RedirectHandler() {
-  const [searchParams] = useSearchParams();
+  const location = useLocation();
   const navigate = useNavigate();
   const { login } = useAuth();
   const [message, setMessage] = useState("Connexion Google en cours...");
 
   useEffect(() => {
-    const token = searchParams.get("token");
-    const refreshToken = searchParams.get("refreshToken");
-    const error = searchParams.get("error");
+    const paramsSource = location.hash.startsWith("#")
+      ? location.hash.slice(1)
+      : location.search;
+    const params = new URLSearchParams(paramsSource);
+    const token = params.get("token");
+    const refreshToken = params.get("refreshToken");
+    const error = params.get("error");
+
+    if (location.hash || location.search) {
+      window.history.replaceState(null, "", location.pathname);
+    }
 
     if (error) {
       setMessage(error);
@@ -27,7 +35,7 @@ export default function OAuth2RedirectHandler() {
     login(token);
     localStorage.setItem("refreshToken", refreshToken);
     navigate("/", { replace: true });
-  }, [login, navigate, searchParams]);
+  }, [location.hash, location.pathname, location.search, login, navigate]);
 
   return <p style={{ padding: "2rem", textAlign: "center" }}>{message}</p>;
 }

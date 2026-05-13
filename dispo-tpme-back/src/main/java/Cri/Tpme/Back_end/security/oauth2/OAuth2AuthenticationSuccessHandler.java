@@ -9,9 +9,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 @Component
 @RequiredArgsConstructor
@@ -34,10 +35,9 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         String accessToken    = tokenProvider.generateTokenFromEmail(email);
         String refreshToken   = refreshTokenService.createRefreshToken(email).getToken();
 
-        String redirectUrl = UriComponentsBuilder.fromUriString(authorizedRedirectUri)
-                .queryParam("token",        accessToken)
-                .queryParam("refreshToken", refreshToken)
-                .build().toUriString();
+        String redirectUrl = authorizedRedirectUri
+                + "#token=" + URLEncoder.encode(accessToken, StandardCharsets.UTF_8)
+                + "&refreshToken=" + URLEncoder.encode(refreshToken, StandardCharsets.UTF_8);
 
         getRedirectStrategy().sendRedirect(request, response, redirectUrl);
     }
