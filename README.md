@@ -1,5 +1,4 @@
 
-```markdown
 <p align="center">
   <strong>🏢 CRI Laâyoune–Sakia El Hamra · 🚀 TPME Investment Support</strong><br />
   Eligibility checks · Grant simulations · Bilingual AI assistant
@@ -21,7 +20,7 @@
 
 ---
 
-## 📌 About the Project
+## About the Project
 
 **CRI Smart Invest** is a modern, bilingual (French and Arabic) investment support and grant simulation platform designed specifically for **TPMEs (Petites et Moyennes Entreprises)** in the Laâyoune–Sakia El Hamra region. 
 
