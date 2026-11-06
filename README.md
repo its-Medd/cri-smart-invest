@@ -1,10 +1,6 @@
 
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=java,js,react,spring,css,html,maven,git" alt="Java, JavaScript, React, Spring, CSS, HTML, Maven and Git" />
-</p>
-
-<p align="center">
   <strong>🏢 CRI Laâyoune–Sakia El Hamra · 🚀 TPME Investment Support</strong><br />
   Eligibility checks · Grant simulations · Local AI assistant
 </p>
